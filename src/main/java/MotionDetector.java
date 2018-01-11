@@ -17,13 +17,10 @@ import static org.bytedeco.javacpp.opencv_imgproc.*;
 public class MotionDetector {
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd__hhmmSSS");
     static FrameRecorder recorder = null;
+    static boolean recording = false;
+    static int framesWithoutMotion = 0;
+    static final int MAXFRAMESWITHOUTMOTION = 100;
     public static void main(String[] args) throws Exception {
-        /* TODO
-        boolean recording = false;
-        int framesWithoutMotion = 0;
-        int maxFramesWithoutMotion = 6000;
-        */
-
         OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
         OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
         grabber.start();
@@ -46,7 +43,7 @@ public class MotionDetector {
         liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
              try {
-                 if (recorder != null) recorder.stop();
+                 if (recording) stopRecording();
                  grabber.stop();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -55,11 +52,6 @@ public class MotionDetector {
 
         // Used to store contours
         CvMemStorage storage = CvMemStorage.create();
-
-        // recorder
-        String outputFile = DATE_FORMAT.format(new Date()) + ".avi";
-        recorder = FrameRecorder.createDefault(outputFile, live.width(), live.height());
-        recorder.start();
 
         while (diffFrame.isVisible() && liveFrame.isVisible() && grabber != null &&  (live = converter.convert(grabber.grab())) != null) {
             cvClearMemStorage(storage);
@@ -92,22 +84,47 @@ public class MotionDetector {
                 int[][] bp = findLargestBoundingRect(diff, storage);
                 // draw the largest bounding motion rectangle
                 drawBoundingRect(live, bp);
+                cvPutText(live, new Date().toString(), cvPoint(5, 15), cvFont(1, 1), CvScalar.BLACK);
 
                 // if there is motion
                 if (bp[0][0] != -1) {
-                    System.out.println(recorder.getFrameNumber() + " " + recorder.getTimestamp());
+                    if (!recording) {
+                        startRecording(live);
+                    }
+                    framesWithoutMotion = 0;
                 }
                 // if there is no motion
                 else {
-
+                    ++framesWithoutMotion;
+                    if (framesWithoutMotion > MAXFRAMESWITHOUTMOTION) {
+                        stopRecording();
+                    }
                 }
             }
             // put live cam image onto 2nd canvas containing largest bounding motion rectangle
             liveFrame.showImage(converter.convert(live));
-            recorder.record(converter.convert(live));
+            if (recording) recorder.record(converter.convert(live));
             // put the motion sensed frame onto canvas
             if (prevImage != null) diffFrame.showImage(converter.convert(diff));
+
+            System.out.println(recording + " " + recorder + " " + framesWithoutMotion);
+            if (recording) System.out.println(recorder.getFrameNumber());
         }
+
+
+    }
+
+    static void startRecording(IplImage image) throws FrameRecorder.Exception {
+        // recorder
+        String outputFile = DATE_FORMAT.format(new Date()) + ".avi";
+        recorder = FrameRecorder.createDefault(outputFile, image.width(), image.height());
+        recorder.start();
+        recording = true;
+    }
+
+    static void stopRecording() throws FrameRecorder.Exception {
+        recorder.stop();
+        recording = false;
     }
 
     // returns top left, top right, bottom left, bottom right points
