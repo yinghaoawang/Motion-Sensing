@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvt.iml" filepath="$PROJECT_DIR$/.idea/modules/cvt.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvt_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cvt_main.iml" group="cvt" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cvt_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cvt_test.iml" group="cvt" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WebcamSecurity.iml" filepath="$PROJECT_DIR$/.idea/modules/WebcamSecurity.iml" />
     </modules>
   </component>
 </project>

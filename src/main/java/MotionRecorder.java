@@ -14,7 +14,7 @@ import java.util.Date;
 import static org.bytedeco.javacpp.opencv_core.*;
 import static org.bytedeco.javacpp.opencv_imgproc.*;
 
-public class MotionDetector {
+public class MotionRecorder {
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd__hhmmSSS");
     static FrameRecorder recorder = null;
     static boolean recording = false;

@@ -17,6 +17,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -24,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+            <state relative-caret-position="204">
+              <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -54,14 +57,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MotionDetector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+      <file leaf-file-name="MotionRecorder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+            <state relative-caret-position="194">
+              <caret line="125" column="64" lean-forward="true" selection-start-line="125" selection-start-column="64" selection-end-line="125" selection-end-column="64" />
               <folding>
-                <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-                <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
+                <element signature="e#0#7718#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+                <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -410,10 +415,11 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/MotionDetector.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/MotionRecorder.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="width" value="1622" />
     <option name="height" value="1732" />
@@ -437,25 +443,25 @@
         <subPane>
           <expand>
             <path>
-              <item name="cvt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Webcam Security" type="b2602c69:ProjectViewProjectNode" />
               <item name="Motion-Sensing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="cvt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Webcam Security" type="b2602c69:ProjectViewProjectNode" />
               <item name="Motion-Sensing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cvt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Webcam Security" type="b2602c69:ProjectViewProjectNode" />
               <item name="Motion-Sensing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cvt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Webcam Security" type="b2602c69:ProjectViewProjectNode" />
               <item name="Motion-Sensing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -468,10 +474,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -485,7 +492,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MotionDetector">
+  <component name="RunManager" selected="Groovy.build">
     <configuration name="ColoredObjectTrack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ColoredObjectTrack" />
       <option name="VM_PARAMETERS" />
@@ -512,8 +519,8 @@
       <module name="cvt_main" />
       <envs />
     </configuration>
-    <configuration name="MotionDetector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MotionDetector" />
+    <configuration name="MotionRecorder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MotionRecorder" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -522,7 +529,7 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="cvt_main" />
+      <module name="WebcamSecurity" />
       <envs />
     </configuration>
     <configuration name="OpticalFlowTracker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -576,13 +583,6 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
@@ -594,6 +594,13 @@
       <module name="cvt" />
       <envs />
     </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -603,18 +610,28 @@
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
-    <list size="4">
+    <configuration name="build" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
+      <module name="WebcamSecurity" />
+      <setting name="path" value="file://$PROJECT_DIR$/build.gradle" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+    </configuration>
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
       <item index="1" class="java.lang.String" itemvalue="Application.OpticalFlowTracker" />
       <item index="2" class="java.lang.String" itemvalue="Application.ColoredObjectTrack" />
-      <item index="3" class="java.lang.String" itemvalue="Application.MotionDetector" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MotionRecorder" />
+      <item index="4" class="java.lang.String" itemvalue="Groovy.build" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.MotionDetector" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ColoredObjectTrack" />
-        <item index="2" class="java.lang.String" itemvalue="Application.OpticalFlowTracker" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Main" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Groovy.build" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MotionRecorder" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ColoredObjectTrack" />
+        <item index="3" class="java.lang.String" itemvalue="Application.OpticalFlowTracker" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -622,17 +639,18 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="0" width="811" height="866" extended-state="0" />
+    <frame x="-6" y="-6" width="1613" height="873" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263434" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3263434" sideWeight="0.49530956" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936507" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3263434" sideWeight="0.5046904" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24968633" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.124452785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.395806" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -680,13 +698,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding>
-            <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
+            <element signature="e#0#7718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -715,13 +735,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding>
-            <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
+            <element signature="e#0#7718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,13 +789,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1649">
           <caret line="97" column="10" lean-forward="false" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
           <folding>
-            <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
+            <element signature="e#0#7718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -803,13 +827,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="39" column="48" lean-forward="true" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
           <folding>
-            <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
+            <element signature="e#0#7718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -831,13 +857,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="31" column="54" lean-forward="false" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
           <folding>
-            <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
+            <element signature="e#0#7718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -859,13 +887,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="39" column="40" lean-forward="false" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
           <folding>
-            <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
+            <element signature="e#0#7718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -920,22 +950,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MotionDetector.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding>
-            <element signature="method#findLargestBoundingRect#0;class#MotionDetector#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionDetector#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="194">
+          <caret line="125" column="64" lean-forward="true" selection-start-line="125" selection-start-column="64" selection-end-line="125" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#7718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -945,7 +977,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>cvt:jar</last-edited>
+          <last-edited>WebcamSecurity:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -993,12 +1025,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>cvt_main|cvt</last-edited>
+          <last-edited>WebcamSecurity</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
