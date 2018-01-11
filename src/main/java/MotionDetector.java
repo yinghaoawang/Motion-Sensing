@@ -4,6 +4,9 @@
 
 import org.bytedeco.javacpp.*;
 import org.bytedeco.javacv.*;
+
+import javax.swing.*;
+
 import static org.bytedeco.javacpp.opencv_core.*;
 import static org.bytedeco.javacpp.opencv_imgproc.*;
 
@@ -25,6 +28,9 @@ public class MotionDetector {
         // Frame that displays the current frame
         CanvasFrame liveFrame = new CanvasFrame("Live Cam");
         liveFrame.setCanvasSize(live.width(), live.height());
+
+        diffFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Used to store contours
         CvMemStorage storage = CvMemStorage.create();
