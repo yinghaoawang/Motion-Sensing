@@ -2,11 +2,14 @@
  * Built upon Angelo Marchesin sample motion detector on javaCV sample files.
  */
 
-import org.bytedeco.javacpp.*;
-import org.bytedeco.javacv.*;
+import org.bytedeco.javacpp.Loader;
+import org.bytedeco.javacpp.avcodec;
+import org.bytedeco.javacv.CanvasFrame;
+import org.bytedeco.javacv.FrameRecorder;
+import org.bytedeco.javacv.OpenCVFrameConverter;
+import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 import javax.swing.*;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,115 +20,167 @@ import static org.bytedeco.javacpp.opencv_imgproc.*;
 public class MotionRecorder {
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd__hhmmSSS");
     static FrameRecorder recorder = null;
-    static boolean recording = false;
+    static OpenCVFrameGrabber grabber = null;
+    static volatile boolean recording = false;
     static int framesWithoutMotion = 0;
     static final int MAXFRAMESWITHOUTMOTION = 120;
+    static CanvasFrame liveFrame;
+    static Thread mainThread;
     public static void main(String[] args) throws Exception {
-        OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
-        OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
-        grabber.start();
+        mainThread = new Thread (() -> {
+            try {
+                grabber = new OpenCVFrameGrabber(0);
+                OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
+                grabber.start();
 
-        IplImage live = converter.convert(grabber.grab());
-        IplImage image = null;
-        IplImage prevImage = null;
-        IplImage diff = null;
+                IplImage live = converter.convert(grabber.grab());
+                IplImage image = null;
+                IplImage prevImage = null;
+                IplImage diff = null;
 
-        // Frame that displays the difference between curr and prev frames
-        CanvasFrame diffFrame = new CanvasFrame("Difference in previous frame");
-        diffFrame.setCanvasSize(live.width(), live.height());
+                /*
+                // Frame that displays the difference between curr and prev frames
+                CanvasFrame diffFrame = new CanvasFrame("Difference in previous frame");
+                diffFrame.setCanvasSize(live.width(), live.height());
+                */
 
-        // Frame that displays the current frame
-        CanvasFrame liveFrame = new CanvasFrame("Live Cam");
-        liveFrame.setCanvasSize(live.width(), live.height());
+                // Frame that displays the current frame
+                liveFrame = new CanvasFrame("Live Cam");
+                liveFrame.setCanvasSize(live.width(), live.height());
 
-        // on window closing, securely close everything
-        diffFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-             try {
-                 if (recording) stopRecording();
-                 grabber.stop();
+                /*
+                // on window closing, securely close everything
+                diffFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                        exitAction();
+                        System.exit(0);
+                    }
+                });
+                */
+                /*
+                liveFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+
+                        System.exit(0);
+                    }
+                });
+                */
+                Runtime.getRuntime().addShutdownHook(new Thread() {
+                    @Override
+                    public void run() {
+                        mainThread.interrupt();
+                        exitAction();
+                    }
+                });
+                liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
+                // Used to store contours
+                CvMemStorage storage = CvMemStorage.create();
+
+                while (!Thread.currentThread().isInterrupted() && grabber != null && (live = converter.convert(grabber.grab())) != null) {
+                    cvClearMemStorage(storage);
+
+                    // Smooths using gaussian blur (removes much background noise)
+                    cvSmooth(live, live, CV_GAUSSIAN, 9, 9, 2, 2);
+
+                    // creates image if not created and sets prev image
+                    if (image == null) {
+                        image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
+                        cvCvtColor(live, image, CV_RGB2GRAY);
+                    } else {
+                        prevImage = image;
+                        image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
+                        cvCvtColor(live, image, CV_RGB2GRAY);
+                    }
+
+                    // sets differential image if not set
+                    if (diff == null) {
+                        diff = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
+                    }
+
+                    if (prevImage != null) {
+                        // difference between curr and prev frame (motion sense)
+                        cvAbsDiff(image, prevImage, diff);
+                        // do some threshold for wipe away useless details
+                        cvThreshold(diff, diff, 30, 255, CV_THRESH_BINARY);
+
+                        // find largest bounding rectangles for live canvas
+                        int[][] bp = findLargestBoundingRect(diff, storage);
+                        // draw the largest bounding motion rectangle
+                        drawBoundingRect(live, bp);
+                        // add a timestamp to live frame
+                        cvPutText(live, new Date().toString(), cvPoint(5, 15), cvFont(1, 1), CvScalar.BLACK);
+
+                        // if there is motion then start/continue recording
+                        if (bp[0][0] != -1) {
+                            if (!recording && !Thread.currentThread().isInterrupted()) {
+                                startRecording(live);
+                            }
+                            framesWithoutMotion = 0;
+                        }
+                        // if there is no motion for a set amount of frames, stop recording
+                        else {
+                            ++framesWithoutMotion;
+                            if (framesWithoutMotion > MAXFRAMESWITHOUTMOTION && !Thread.currentThread().isInterrupted()) {
+                                stopRecording();
+                            }
+                        }
+                    }
+                    // put live cam image onto 2nd canvas containing largest bounding motion rectangle
+                    liveFrame.showImage(converter.convert(live));
+                    if (recording && !Thread.currentThread().isInterrupted()) {
+                        recorder.record(converter.convert(live));
+                    }
+                    // put the motion sensed frame onto canvas
+                    //if (prevImage != null) diffFrame.showImage(converter.convert(diff));
+
+                    /*
+                    System.out.println(recording + " " + recorder + " " + framesWithoutMotion);
+                                if (recording) System.out.println(recorder.getFrameNumber());
+                    */
+                }
+
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Something bad may or may not have happend: " + e.getMessage());
             }
-        }));
+        });
 
-        // Used to store contours
-        CvMemStorage storage = CvMemStorage.create();
-
-        while (diffFrame.isVisible() && liveFrame.isVisible() && grabber != null &&  (live = converter.convert(grabber.grab())) != null) {
-            cvClearMemStorage(storage);
-
-            // Smooths using gaussian blur (removes much background noise)
-            cvSmooth(live, live, CV_GAUSSIAN, 9, 9, 2, 2);
-
-            // creates image if not created and sets prev image
-            if (image == null) {
-                image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-                cvCvtColor(live, image, CV_RGB2GRAY);
-            } else {
-                prevImage = image;
-                image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-                cvCvtColor(live, image, CV_RGB2GRAY);
-            }
-
-            // sets differential image if not set
-            if (diff == null) {
-                diff = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-            }
-
-            if (prevImage != null) {
-                // difference between curr and prev frame (motion sense)
-                cvAbsDiff(image, prevImage, diff);
-                // do some threshold for wipe away useless details
-                cvThreshold(diff, diff, 30, 255, CV_THRESH_BINARY);
-
-                // find largest bounding rectangles for live canvas
-                int[][] bp = findLargestBoundingRect(diff, storage);
-                // draw the largest bounding motion rectangle
-                drawBoundingRect(live, bp);
-                // add a timestamp to live frame
-                cvPutText(live, new Date().toString(), cvPoint(5, 15), cvFont(1, 1), CvScalar.BLACK);
-
-                // if there is motion then start/continue recording
-                if (bp[0][0] != -1) {
-                    if (!recording) {
-                        startRecording(live);
-                    }
-                    framesWithoutMotion = 0;
-                }
-                // if there is no motion for a set amount of frames, stop recording
-                else {
-                    ++framesWithoutMotion;
-                    if (framesWithoutMotion > MAXFRAMESWITHOUTMOTION) {
-                        stopRecording();
-                    }
-                }
-            }
-            // put live cam image onto 2nd canvas containing largest bounding motion rectangle
-            liveFrame.showImage(converter.convert(live));
-            if (recording) recorder.record(converter.convert(live));
-            // put the motion sensed frame onto canvas
-            if (prevImage != null) diffFrame.showImage(converter.convert(diff));
-
-            System.out.println(recording + " " + recorder + " " + framesWithoutMotion);
-            if (recording) System.out.println(recorder.getFrameNumber());
-        }
-
+        mainThread.start();
 
     }
 
     static void startRecording(IplImage image) throws FrameRecorder.Exception {
         // recorder
-        String outputFile = DATE_FORMAT.format(new Date()) + ".avi";
+        String format = "mp4";
+        String outputFile = DATE_FORMAT.format(new Date()) + "." + format;
         recorder = FrameRecorder.createDefault(outputFile, image.width(), image.height());
+        //recorder.setVideoBitrate(4000);
+        recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
+        recorder.setFormat(format);
         recorder.start();
         recording = true;
     }
 
+    static void exitAction() {
+        try {
+            if (recording) stopRecording();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            grabber.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     static void stopRecording() throws FrameRecorder.Exception {
-        recorder.stop();
         recording = false;
+        recorder.stop();
+        recorder.release();
     }
 
     // returns top left, top right, bottom left, bottom right points
