@@ -19,7 +19,7 @@ public class MotionDetector {
     static FrameRecorder recorder = null;
     static boolean recording = false;
     static int framesWithoutMotion = 0;
-    static final int MAXFRAMESWITHOUTMOTION = 100;
+    static final int MAXFRAMESWITHOUTMOTION = 120;
     public static void main(String[] args) throws Exception {
         OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
         OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
@@ -84,16 +84,17 @@ public class MotionDetector {
                 int[][] bp = findLargestBoundingRect(diff, storage);
                 // draw the largest bounding motion rectangle
                 drawBoundingRect(live, bp);
+                // add a timestamp to live frame
                 cvPutText(live, new Date().toString(), cvPoint(5, 15), cvFont(1, 1), CvScalar.BLACK);
 
-                // if there is motion
+                // if there is motion then start/continue recording
                 if (bp[0][0] != -1) {
                     if (!recording) {
                         startRecording(live);
                     }
                     framesWithoutMotion = 0;
                 }
-                // if there is no motion
+                // if there is no motion for a set amount of frames, stop recording
                 else {
                     ++framesWithoutMotion;
                     if (framesWithoutMotion > MAXFRAMESWITHOUTMOTION) {
