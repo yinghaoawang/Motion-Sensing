@@ -1,6 +1,6 @@
 # Webcam Security
 Use your own computer's webcam to monitor security. It records whenever it detects motion.
-To save space, it will automatically stop recording if there has no motion for a certain amount of time.
+To save space, it will automatically stop recording if there has been no motion for a short amount of time.
 
 ![Sample](https://i.imgur.com/HOCWlnB.png)
 
