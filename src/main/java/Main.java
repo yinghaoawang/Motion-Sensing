@@ -9,7 +9,6 @@ public class Main {
         FrameGrabber grabber = FrameGrabber.createDefault(0);
         grabber.start();
 
-
         Frame grabbedImage;
         CanvasFrame cFrame = new CanvasFrame("title", CanvasFrame.getDefaultGamma() / grabber.getGamma());
         while ((grabbedImage = grabber.grab()) != null) {
