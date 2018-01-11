@@ -6,9 +6,7 @@ To save space, it will automatically stop recording if there has no motion for a
 
 ## Getting Started
 1. Clone the files onto your hard disk
-2. Build the files
-    - Using IntelliJ IDEA: Simply open the main module folder, and compile in IDEA
-3. Run the app in the IDE or in JAR format
+2. Go into out/artifacts and run cvt.jar
 
 ## FAQ
 - Where are the video files stored?
