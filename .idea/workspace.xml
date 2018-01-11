@@ -37,69 +37,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gradle-wrapper.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MotionRecorder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="76" column="82" lean-forward="false" selection-start-line="76" selection-start-column="82" selection-end-line="76" selection-end-column="82" />
+            <state relative-caret-position="245">
+              <caret line="59" column="33" lean-forward="false" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
               <folding>
-                <element signature="e#0#10071#0" expanded="true" />
+                <element signature="e#0#8484#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#2642#2852#0" expanded="true" />
-                <element signature="e#2851#2852#0" expanded="true" />
+                <element signature="e#1760#1970#0" expanded="true" />
+                <element signature="e#1969#1970#0" expanded="true" />
                 <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-                <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FFmpegFrameRecorder.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/FFmpegFrameRecorder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="847" column="0" lean-forward="false" selection-start-line="847" selection-start-column="0" selection-end-line="847" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OpenCVFrameGrabber.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/OpenCVFrameGrabber.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3689">
-              <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CanvasFrame.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/CanvasFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -126,7 +75,6 @@
       <find>Date()</find>
       <find>timest</find>
       <find>bitrate</find>
-      <find>recorder</find>
       <find>stop</find>
       <find>stoprecording</find>
       <find>recorder.record</find>
@@ -136,10 +84,13 @@
       <find>windowclosing</find>
       <find>record</find>
       <find>oh no</find>
-      <find>startrecording</find>
       <find>liveframe = null</find>
       <find>recording</find>
       <find>exitaction</find>
+      <find>something bad</find>
+      <find>startrecording</find>
+      <find>interrupt()</find>
+      <find>recorder</find>
     </findStrings>
     <replaceStrings>
       <replace>diffFrame</replace>
@@ -463,6 +414,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -504,9 +456,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -690,13 +641,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1613" height="873" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263434" sideWeight="0.49530956" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263434" sideWeight="0.5046904" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33289647" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33289647" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.124452785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -723,6 +675,68 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/FFmpegFrameRecorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14399">
+          <caret line="847" column="0" lean-forward="false" selection-start-line="847" selection-start-column="0" selection-end-line="847" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/OpenCVFrameGrabber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4250">
+          <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/CanvasFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="29" lean-forward="true" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#8484#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
+            <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -752,12 +766,11 @@
         <state relative-caret-position="357">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding>
-            <element signature="e#0#10071#0" expanded="true" />
+            <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2642#2852#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
             <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -791,12 +804,11 @@
         <state relative-caret-position="153">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding>
-            <element signature="e#0#10071#0" expanded="true" />
+            <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2642#2852#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
             <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -847,12 +859,11 @@
         <state relative-caret-position="1649">
           <caret line="97" column="10" lean-forward="false" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
           <folding>
-            <element signature="e#0#10071#0" expanded="true" />
+            <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2642#2852#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
             <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -887,12 +898,11 @@
         <state relative-caret-position="663">
           <caret line="39" column="48" lean-forward="true" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
           <folding>
-            <element signature="e#0#10071#0" expanded="true" />
+            <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2642#2852#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
             <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -919,12 +929,11 @@
         <state relative-caret-position="527">
           <caret line="31" column="54" lean-forward="false" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
           <folding>
-            <element signature="e#0#10071#0" expanded="true" />
+            <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2642#2852#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
             <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -951,12 +960,11 @@
         <state relative-caret-position="663">
           <caret line="39" column="40" lean-forward="false" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
           <folding>
-            <element signature="e#0#10071#0" expanded="true" />
+            <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2642#2852#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
             <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1011,6 +1019,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/FFmpegFrameRecorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12971">
+          <caret line="847" column="0" lean-forward="false" selection-start-line="847" selection-start-column="0" selection-end-line="847" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1019,25 +1035,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bytedeco/javacv/1.3.3/6b731db461eacdffff1a116398fa33a7e309514/javacv-1.3.3-sources.jar!/org/bytedeco/javacv/FFmpegFrameRecorder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="847" column="0" lean-forward="false" selection-start-line="847" selection-start-column="0" selection-end-line="847" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="76" column="82" lean-forward="false" selection-start-line="76" selection-start-column="82" selection-end-line="76" selection-end-column="82" />
+        <state relative-caret-position="245">
+          <caret line="59" column="33" lean-forward="false" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
           <folding>
-            <element signature="e#0#10071#0" expanded="true" />
+            <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#2642#2852#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#1760#1970#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
             <element signature="method#findLargestBoundingRect#0;class#MotionRecorder#0" expanded="false" />
-            <element signature="method#drawBoundingRect#0;class#MotionRecorder#0" expanded="false" />
           </folding>
         </state>
       </provider>

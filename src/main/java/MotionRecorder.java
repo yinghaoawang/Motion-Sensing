@@ -18,7 +18,7 @@ import static org.bytedeco.javacpp.opencv_core.*;
 import static org.bytedeco.javacpp.opencv_imgproc.*;
 
 public class MotionRecorder {
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd__hhmmSSS");
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd__HH-mm-ss");
     static FrameRecorder recorder = null;
     static OpenCVFrameGrabber grabber = null;
     static volatile boolean recording = false;
@@ -34,39 +34,16 @@ public class MotionRecorder {
                 grabber.start();
 
                 IplImage live = converter.convert(grabber.grab());
+                IplImage diff = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
+
                 IplImage image = null;
                 IplImage prevImage = null;
-                IplImage diff = null;
 
-                /*
-                // Frame that displays the difference between curr and prev frames
-                CanvasFrame diffFrame = new CanvasFrame("Difference in previous frame");
-                diffFrame.setCanvasSize(live.width(), live.height());
-                */
 
                 // Frame that displays the current frame
                 liveFrame = new CanvasFrame("Live Cam");
                 liveFrame.setCanvasSize(live.width(), live.height());
 
-                /*
-                // on window closing, securely close everything
-                diffFrame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent we) {
-                        exitAction();
-                        System.exit(0);
-                    }
-                });
-                */
-                /*
-                liveFrame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent we) {
-
-                        System.exit(0);
-                    }
-                });
-                */
                 Runtime.getRuntime().addShutdownHook(new Thread() {
                     @Override
                     public void run() {
@@ -80,27 +57,19 @@ public class MotionRecorder {
                 // Used to store contours
                 CvMemStorage storage = CvMemStorage.create();
 
+                // Each iteration grabs a new frame from webcam
                 while (!Thread.currentThread().isInterrupted() && grabber != null && (live = converter.convert(grabber.grab())) != null) {
                     cvClearMemStorage(storage);
 
                     // Smooths using gaussian blur (removes much background noise)
                     cvSmooth(live, live, CV_GAUSSIAN, 9, 9, 2, 2);
 
-                    // creates image if not created and sets prev image
-                    if (image == null) {
-                        image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-                        cvCvtColor(live, image, CV_RGB2GRAY);
-                    } else {
-                        prevImage = image;
-                        image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-                        cvCvtColor(live, image, CV_RGB2GRAY);
-                    }
+                    // creates image and sets prev image
+                    if (image != null) prevImage = image;
+                    image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
+                    cvCvtColor(live, image, CV_RGB2GRAY);
 
-                    // sets differential image if not set
-                    if (diff == null) {
-                        diff = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-                    }
-
+                    // if previous image exists, determine the difference between them for motion
                     if (prevImage != null) {
                         // difference between curr and prev frame (motion sense)
                         cvAbsDiff(image, prevImage, diff);
@@ -129,27 +98,21 @@ public class MotionRecorder {
                             }
                         }
                     }
+
                     // put live cam image onto 2nd canvas containing largest bounding motion rectangle
                     liveFrame.showImage(converter.convert(live));
                     if (recording && !Thread.currentThread().isInterrupted()) {
                         recorder.record(converter.convert(live));
                     }
-                    // put the motion sensed frame onto canvas
-                    //if (prevImage != null) diffFrame.showImage(converter.convert(diff));
-
-                    /*
-                    System.out.println(recording + " " + recorder + " " + framesWithoutMotion);
-                                if (recording) System.out.println(recorder.getFrameNumber());
-                    */
                 }
 
             } catch (Exception e) {
-                System.out.println("Something bad may or may not have happend: " + e.getMessage());
+                System.out.println("Something bad may or may not have happened: " + e.getMessage());
+                e.printStackTrace();
             }
         });
 
         mainThread.start();
-
     }
 
     static void startRecording(IplImage image) throws FrameRecorder.Exception {
@@ -157,11 +120,16 @@ public class MotionRecorder {
         String format = "mp4";
         String outputFile = DATE_FORMAT.format(new Date()) + "." + format;
         recorder = FrameRecorder.createDefault(outputFile, image.width(), image.height());
-        //recorder.setVideoBitrate(4000);
         recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
         recorder.setFormat(format);
         recorder.start();
         recording = true;
+    }
+
+    static void stopRecording() throws FrameRecorder.Exception {
+        recording = false;
+        recorder.stop();
+        recorder.release();
     }
 
     static void exitAction() {
@@ -175,12 +143,6 @@ public class MotionRecorder {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    static void stopRecording() throws FrameRecorder.Exception {
-        recording = false;
-        recorder.stop();
-        recorder.release();
     }
 
     // returns top left, top right, bottom left, bottom right points
