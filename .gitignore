@@ -1,4 +1,4 @@
 *.avi
 .*.swp
 *.log
-out/production/
+out/
