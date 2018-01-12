@@ -1,5 +1,6 @@
 /*
  * Built upon Angelo Marchesin sample motion detector on javaCV sample files.
+ * Yinghao Wang
  */
 
 import org.bytedeco.javacpp.Loader;
@@ -10,6 +11,8 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,11 +24,15 @@ public class MotionRecorder {
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd__HH-mm-ss");
     static FrameRecorder recorder = null;
     static OpenCVFrameGrabber grabber = null;
-    static volatile boolean recording = false;
     static int framesWithoutMotion = 0;
     static final int MAXFRAMESWITHOUTMOTION = 120;
     static CanvasFrame liveFrame;
+
     static Thread mainThread;
+
+    static volatile boolean showCam = true;
+    static volatile boolean recording = false;
+
     public static void main(String[] args) throws Exception {
         mainThread = new Thread (() -> {
             try {
@@ -43,14 +50,18 @@ public class MotionRecorder {
                 // Frame that displays the current frame
                 liveFrame = new CanvasFrame("Live Cam");
                 liveFrame.setCanvasSize(live.width(), live.height());
-
-                Runtime.getRuntime().addShutdownHook(new Thread() {
+                liveFrame.getCanvas().addMouseListener(new MouseAdapter() {
                     @Override
-                    public void run() {
-                        mainThread.interrupt();
-                        exitAction();
+                    public void mouseClicked(MouseEvent e) {
+                        System.out.println(e.getX() + "," + e.getY());
                     }
                 });
+
+                // handle closing the application
+                Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                    mainThread.interrupt();
+                    exitAction();
+                }));
                 liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
@@ -80,8 +91,6 @@ public class MotionRecorder {
                         int[][] bp = findLargestBoundingRect(diff, storage);
                         // draw the largest bounding motion rectangle
                         drawBoundingRect(live, bp);
-                        // add a timestamp to live frame
-                        cvPutText(live, new Date().toString(), cvPoint(5, 15), cvFont(1, 1), CvScalar.BLACK);
 
                         // if there is motion then start/continue recording
                         if (bp[0][0] != -1) {
@@ -99,15 +108,27 @@ public class MotionRecorder {
                         }
                     }
 
-                    // put live cam image onto 2nd canvas containing largest bounding motion rectangle
-                    liveFrame.showImage(converter.convert(live));
-                    if (recording && !Thread.currentThread().isInterrupted()) {
-                        recorder.record(converter.convert(live));
+                    // display the live camera
+                    if (showCam) {
+                        // add a timestamp to live frame
+                        cvPutText(live, new Date().toString(), cvPoint(5, live.height() - 5), cvFont(1, 1), CvScalar.BLACK);
+
+                        if (recording && !Thread.currentThread().isInterrupted()) {
+                            recorder.record(converter.convert(live));
+
+                        }
+
+                        if (recording && !Thread.currentThread().isInterrupted()) {
+                            cvPutText(live, "Rec", cvPoint(5, 15), cvFont(1, 1), CvScalar.RED);
+                        }
+
+                        // put live cam image onto 2nd canvas containing largest bounding motion rectangle
+                        liveFrame.showImage(converter.convert(live));
                     }
                 }
 
             } catch (Exception e) {
-                System.out.println("Something bad may or may not have happened: " + e.getMessage());
+                System.err.println("Error in the main thread: " + e.getMessage());
                 e.printStackTrace();
             }
         });
