@@ -125,25 +125,20 @@ public class MotionRecorder {
             }
         });
 
+        // Choose directory to store video files
         JFileChooser chooser;
-        while (true) {
-            chooser = new JFileChooser();
-            chooser.setCurrentDirectory(new java.io.File("."));
-            chooser.setDialogTitle("Select directory to store video files.");
-            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            //
-            // disable the "All files" option.
-            //
-            chooser.setAcceptAllFileFilterUsed(false);
-            //
-            if (chooser.showOpenDialog(liveFrame) == JFileChooser.APPROVE_OPTION) {
-                outputFileDir = chooser.getSelectedFile().toString();
-                outputFileDir = outputFileDir.replace("\\", "/");
-                break;
-            }
+        chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Select directory to store video files.");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        if (chooser.showOpenDialog(liveFrame) == JFileChooser.APPROVE_OPTION) {
+            outputFileDir = chooser.getSelectedFile().toString();
+            outputFileDir = outputFileDir.replace("\\", "/");
         }
 
-        mainThread.start();
+        if (outputFileDir != null) mainThread.start();
+        else System.exit(0);
     }
 
     static void startRecording(IplImage image) throws FrameRecorder.Exception {
