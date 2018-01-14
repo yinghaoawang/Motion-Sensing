@@ -11,8 +11,6 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,45 +24,39 @@ public class MotionRecorder {
     static OpenCVFrameGrabber grabber = null;
     static int framesWithoutMotion = 0;
     static final int MAXFRAMESWITHOUTMOTION = 120;
+    static IplImage live;
     static CanvasFrame liveFrame;
 
     static Thread mainThread;
+    static String outputFileDir;
 
     static volatile boolean showCam = true;
     static volatile boolean recording = false;
 
     public static void main(String[] args) throws Exception {
+        grabber = new OpenCVFrameGrabber(0);
+        OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
+        grabber.start();
+
+        live = converter.convert(grabber.grab());
+
+        // Frame that displays the current frame
+        liveFrame = new CanvasFrame("Live Cam");
+        liveFrame.setCanvasSize(live.width(), live.height());
+
+        // handle closing the application
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            mainThread.interrupt();
+            exitAction();
+        }));
+        liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         mainThread = new Thread (() -> {
             try {
-                grabber = new OpenCVFrameGrabber(0);
-                OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
-                grabber.start();
-
-                IplImage live = converter.convert(grabber.grab());
                 IplImage diff = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
 
                 IplImage image = null;
                 IplImage prevImage = null;
-
-
-                // Frame that displays the current frame
-                liveFrame = new CanvasFrame("Live Cam");
-                liveFrame.setCanvasSize(live.width(), live.height());
-                liveFrame.getCanvas().addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        System.out.println(e.getX() + "," + e.getY());
-                    }
-                });
-
-                // handle closing the application
-                Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                    mainThread.interrupt();
-                    exitAction();
-                }));
-                liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
                 // Used to store contours
                 CvMemStorage storage = CvMemStorage.create();
 
@@ -133,13 +125,32 @@ public class MotionRecorder {
             }
         });
 
+        JFileChooser chooser;
+        while (true) {
+            chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new java.io.File("."));
+            chooser.setDialogTitle("Select directory to store video files.");
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            //
+            // disable the "All files" option.
+            //
+            chooser.setAcceptAllFileFilterUsed(false);
+            //
+            if (chooser.showOpenDialog(liveFrame) == JFileChooser.APPROVE_OPTION) {
+                outputFileDir = chooser.getSelectedFile().toString();
+                outputFileDir = outputFileDir.replace("\\", "/");
+                break;
+            }
+        }
+
         mainThread.start();
     }
 
     static void startRecording(IplImage image) throws FrameRecorder.Exception {
         // recorder
         String format = "mp4";
-        String outputFile = DATE_FORMAT.format(new Date()) + "." + format;
+        String outputFile = outputFileDir + "/" + DATE_FORMAT.format(new Date()) + "." + format;
+        System.out.println(outputFile);
         recorder = FrameRecorder.createDefault(outputFile, image.width(), image.height());
         recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
         recorder.setFormat(format);

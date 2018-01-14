@@ -18,6 +18,8 @@ Jar file download link [here](http://www.mediafire.com/file/n6fmr4zl2bpr3cc/cvt.
 3. Build and run
 
 ## FAQ
+- How do I begin recording?
+    - It automatically enables recording when a file directory is selected. Recording begins when it detects motion. The word 'Rec' appears on the screen when it is recording.
 - Where are the video files stored?
     - They are located in the directory as the JAR file
 
