@@ -40,10 +40,9 @@
       <file leaf-file-name="MotionRecorder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="83" column="30" lean-forward="true" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
+            <state relative-caret-position="-3298">
+              <caret line="1" column="77" lean-forward="true" selection-start-line="1" selection-start-column="77" selection-end-line="1" selection-end-column="77" />
               <folding>
-                <element signature="e#0#9924#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -681,7 +680,6 @@
         <state relative-caret-position="3179">
           <caret line="187" column="0" lean-forward="true" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -700,7 +698,6 @@
         <state relative-caret-position="1802">
           <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -754,7 +751,6 @@
         <state relative-caret-position="901">
           <caret line="53" column="29" lean-forward="true" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -787,7 +783,6 @@
         <state relative-caret-position="357">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -820,7 +815,6 @@
         <state relative-caret-position="153">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -868,7 +862,6 @@
         <state relative-caret-position="1649">
           <caret line="97" column="10" lean-forward="false" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -902,7 +895,6 @@
         <state relative-caret-position="663">
           <caret line="39" column="48" lean-forward="true" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -929,7 +921,6 @@
         <state relative-caret-position="527">
           <caret line="31" column="54" lean-forward="false" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -956,7 +947,6 @@
         <state relative-caret-position="663">
           <caret line="39" column="40" lean-forward="false" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -1033,10 +1023,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MotionRecorder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="83" column="30" lean-forward="true" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
+        <state relative-caret-position="-3298">
+          <caret line="1" column="77" lean-forward="true" selection-start-line="1" selection-start-column="77" selection-end-line="1" selection-end-column="77" />
           <folding>
-            <element signature="e#0#9924#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
