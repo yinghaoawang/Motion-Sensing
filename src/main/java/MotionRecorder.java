@@ -46,7 +46,13 @@ public class MotionRecorder {
 
         // set up main thread by getting output file
         String outputFileDir = getOutputFileDir();
-        mainThread = new Thread (() -> mainThreadFunction(outputFileDir));
+        mainThread = new Thread (() -> {
+            try {
+                mainThreadFunction(outputFileDir);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         // if a file directory is chosen then begin sensing and recording
         if (outputFileDir != null) mainThread.start();
@@ -73,76 +79,72 @@ public class MotionRecorder {
     }
 
     // Handles all webcam grabbing, motion sensing, and recording
-    static void mainThreadFunction(String outputFileDir) {
-        try {
-            IplImage diff = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-            IplImage image = null;
-            IplImage prevImage = null;
-            // Used to store contours
-            CvMemStorage storage = CvMemStorage.create();
+    static void mainThreadFunction(String outputFileDir) throws Exception {
+        IplImage diff = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
+        IplImage image = null;
+        IplImage prevImage = null;
+        // Used to store contours
+        CvMemStorage storage = CvMemStorage.create();
 
-            // Each iteration grabs a new frame from webcam
-            while (!Thread.currentThread().isInterrupted() && grabber != null && (live = converter.convert(grabber.grab())) != null) {
-                cvClearMemStorage(storage);
+        // Each iteration grabs a new frame from webcam
+        while (!Thread.currentThread().isInterrupted() && grabber != null && (live = converter.convert(grabber.grab())) != null) {
+            cvClearMemStorage(storage);
 
-                // Smooths using gaussian blur (removes much background noise)
-                cvSmooth(live, live, CV_GAUSSIAN, 9, 9, 2, 2);
+            // Smooths using gaussian blur (removes much background noise)
+            cvSmooth(live, live, CV_GAUSSIAN, 9, 9, 2, 2);
 
-                // creates image and sets prev image
-                if (image != null) prevImage = image;
-                image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
-                cvCvtColor(live, image, CV_RGB2GRAY);
+            // creates image and sets prev image
+            if (image != null) prevImage = image;
+            image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
+            cvCvtColor(live, image, CV_RGB2GRAY);
 
-                // if previous image exists, determine the difference between them for motion
-                if (prevImage != null) {
-                    // difference between curr and prev frame (motion sense)
-                    cvAbsDiff(image, prevImage, diff);
-                    // do some threshold for wipe away useless details
-                    cvThreshold(diff, diff, 30, 255, CV_THRESH_BINARY);
+            // if previous image exists, determine the difference between them for motion
+            if (prevImage != null) {
+                // difference between curr and prev frame (motion sense)
+                cvAbsDiff(image, prevImage, diff);
+                // do some threshold for wipe away useless details
+                cvThreshold(diff, diff, 30, 255, CV_THRESH_BINARY);
 
-                    // find largest bounding rectangles for live canvas
-                    int[][] bp = findLargestBoundingRect(diff, storage);
-                    // draw the largest bounding motion rectangle
-                    drawBoundingRect(live, bp);
+                // find largest bounding rectangles for live canvas
+                int[][] bp = findLargestBoundingRect(diff, storage);
+                // draw the largest bounding motion rectangle
+                drawBoundingRect(live, bp);
 
-                    // if there is motion then start/continue recording
-                    if (bp[0][0] != -1) {
-                        if (!recording && !Thread.currentThread().isInterrupted()) {
-                            startRecording(live, outputFileDir);
-                        }
-                        framesWithoutMotion = 0;
+                // if there is motion then start/continue recording
+                if (bp[0][0] != -1) {
+                    if (!recording && !Thread.currentThread().isInterrupted()) {
+                        startRecording(live, outputFileDir);
                     }
-                    // if there is no motion for a set amount of frames, stop recording
-                    else {
-                        ++framesWithoutMotion;
-                        if (framesWithoutMotion > MAXFRAMESWITHOUTMOTION && !Thread.currentThread().isInterrupted()) {
-                            stopRecording();
-                        }
+                    framesWithoutMotion = 0;
+                }
+                // if there is no motion for a set amount of frames, stop recording
+                else {
+                    ++framesWithoutMotion;
+                    if (framesWithoutMotion > MAXFRAMESWITHOUTMOTION && !Thread.currentThread().isInterrupted()) {
+                        stopRecording();
                     }
                 }
-
-                // display the live camera
-                // add a timestamp to live frame
-                cvPutText(live, new Date().toString(), cvPoint(5, live.height() - 5), cvFont(1, 1), CvScalar.BLACK);
-
-                if (recording && !Thread.currentThread().isInterrupted()) {
-                    recorder.record(converter.convert(live));
-
-                }
-
-                if (recording && !Thread.currentThread().isInterrupted()) {
-                    cvPutText(live, "Rec", cvPoint(5, 15), cvFont(1, 1), CvScalar.RED);
-                }
-
-                // put live cam image onto 2nd canvas containing largest bounding motion rectangle
-                liveFrame.showImage(converter.convert(live));
             }
 
-        } catch (Exception e) {
-            System.err.println("Error in the main thread: " + e.getMessage());
-            e.printStackTrace();
+            // display the live camera
+            // add a timestamp to live frame
+            cvPutText(live, new Date().toString(), cvPoint(5, live.height() - 5), cvFont(1, 1), CvScalar.BLACK);
+
+            if (recording && !Thread.currentThread().isInterrupted()) {
+                recorder.record(converter.convert(live));
+
+            }
+
+            if (recording && !Thread.currentThread().isInterrupted()) {
+                cvPutText(live, "Rec", cvPoint(5, 15), cvFont(1, 1), CvScalar.RED);
+            }
+
+            // put live cam image onto 2nd canvas containing largest bounding motion rectangle
+            liveFrame.showImage(converter.convert(live));
         }
+
     }
+
 
     // Uses jfilechooser to get a file directory to store videos
     static String getOutputFileDir() {
