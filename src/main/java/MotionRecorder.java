@@ -64,6 +64,9 @@ public class MotionRecorder {
         // Get webcam
         grabber = new OpenCVFrameGrabber(0);
         grabber.start();
+        // init converter
+        converter = new OpenCVFrameConverter.ToIplImage();
+        // get initial webcam frame
         live = converter.convert(grabber.grab());
         // Frame that displays the current frame
         liveFrame = new CanvasFrame("Live Cam");
@@ -74,8 +77,6 @@ public class MotionRecorder {
             exitAction();
         }));
         liveFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        // init converter
-        converter = new OpenCVFrameConverter.ToIplImage();
     }
 
     // Handles all webcam grabbing, motion sensing, and recording

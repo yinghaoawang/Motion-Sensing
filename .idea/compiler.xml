@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="cvt_main" target="1.8" />
       <module name="cvt_test" target="1.8" />
+      <module name="WebcamSecurity_main" target="1.8" />
+      <module name="WebcamSecurity_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

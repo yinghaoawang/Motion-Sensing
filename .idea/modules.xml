@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/WebcamSecurity.iml" filepath="$PROJECT_DIR$/.idea/modules/WebcamSecurity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WebcamSecurity_main.iml" filepath="$PROJECT_DIR$/.idea/modules/WebcamSecurity_main.iml" group="WebcamSecurity" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WebcamSecurity_test.iml" filepath="$PROJECT_DIR$/.idea/modules/WebcamSecurity_test.iml" group="WebcamSecurity" />
     </modules>
   </component>
 </project>
