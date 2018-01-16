@@ -95,7 +95,10 @@ public class MotionRecorder {
             cvSmooth(live, live, CV_GAUSSIAN, 9, 9, 2, 2);
 
             // creates image and sets prev image
-            if (image != null) prevImage = image;
+            if (prevImage != null) prevImage.release();
+            if (image != null) {
+                prevImage = image;
+            }
             image = IplImage.create(live.width(), live.height(), IPL_DEPTH_8U, 1);
             cvCvtColor(live, image, CV_RGB2GRAY);
 
@@ -142,6 +145,7 @@ public class MotionRecorder {
 
             // put live cam image onto 2nd canvas containing largest bounding motion rectangle
             liveFrame.showImage(converter.convert(live));
+            //live.release();
         }
 
     }
