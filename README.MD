@@ -6,7 +6,7 @@ To save space, it will automatically stop recording if there has been no motion 
 *Motion capture recording of a shaking Starbucks cup*
 
 ## Getting Started
-Jar file download link [here](http://www.mediafire.com/file/n6fmr4zl2bpr3cc/cvt.zip)
+Jar file download link [here](http://www.mediafire.com/file/10dwul92oy22jgb/WebcamSecurity-1.0-SNAPSHOT.jar)
 
 ### Using just the application
 1. Download the jar zip
