@@ -2,7 +2,8 @@
 Use your own computer's webcam as a security camera. It records whenever it detects motion.
 To save space, it will automatically stop recording if there has been no motion for a short amount of time.
 
-![Sample](https://i.imgur.com/HOCWlnB.png)
+![Sample](https://i.imgur.com/jdcPnqa.png)
+*Motion capture recording of a shaking Starbucks cup*
 
 ## Getting Started
 Jar file download link [here](http://www.mediafire.com/file/n6fmr4zl2bpr3cc/cvt.zip)

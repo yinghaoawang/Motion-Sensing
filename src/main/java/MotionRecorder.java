@@ -132,7 +132,9 @@ public class MotionRecorder {
 
             // display the live camera
             // add a timestamp to live frame
-            cvPutText(live, new Date().toString(), cvPoint(5, live.height() - 5), cvFont(1, 1), CvScalar.BLACK);
+            CvFont font = cvFont(1, 1);
+
+            cvPutText(live, new Date().toString(), cvPoint(5, live.height() - 5), font, CvScalar.WHITE);
 
             if (recording && !Thread.currentThread().isInterrupted()) {
                 recorder.record(converter.convert(live));
@@ -140,7 +142,7 @@ public class MotionRecorder {
             }
 
             if (recording && !Thread.currentThread().isInterrupted()) {
-                cvPutText(live, "Rec", cvPoint(5, 15), cvFont(1, 1), CvScalar.RED);
+                cvPutText(live, "Rec", cvPoint(5, 15), font, CvScalar.RED);
             }
 
             // put live cam image onto 2nd canvas containing largest bounding motion rectangle
